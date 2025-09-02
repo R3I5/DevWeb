@@ -34,3 +34,4 @@ function baseFake(login, senha){
     }
     return 2; // só retorna 2 depois de verificar todos 
 }
+
