@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AulaGetPost</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <ul class="navbar-nav me-auto my-2 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Acesse já!</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="card" style="max-width: 700px;">
+            <div class="row g-0">
+                <div class="col-md-5 d-flex justify-content-center align-items-center">
+                    <img src="../../assets/img/userImage.png" class="img-fluid rounded-start p-3"
+                        alt="Imagem de usuário padrão">
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <form name="login" id="login" method="post">
+                            <h2 class="card-title text-center mb-4">Welcome!</h2>
+
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">User</label>
+                                <input type="text" name="nome" id="nome" placeholder="Digite aqui seu usuário"
+                                    class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" name="senha" id="senha" placeholder="Digite aqui sua senha"
+                                    class="form-control">
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button id="botao" type="submit" onclick="retornabotao()" class="btn btn-dark">Entrar</button>
+                                <hr>
+                                <p class="my-2">ou</p>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#modalCadastro">Cadastre-se</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Cadastro -->
+    <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="cadastro" action="back-end.php" method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalCadastroLabel">Formulário de Cadastro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Cadastre-se para se tornar nosso parceiro!</p>
+                        <div class="mb-3">
+                            <label for="cad-nome" class="form-label">Nome Completo</label>
+                            <input type="text" id="cad-nome" name="cad-nome" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cad-email" class="form-label">Email</label>
+                            <input type="email" id="cad-email" name="cad-email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cad-celular" class="form-label">Celular</label>
+                            <input type="text" id="cad-celular" name="cad-celular" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cad-data" class="form-label">Data de nascimento</label>
+                            <input type="date" id="cad-data" name="cad-data" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Gênero</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="radioFeminino"
+                                    value="Feminino">
+                                <label class="form-check-label" for="radioFeminino">Feminino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="radioMasculino"
+                                    value="Masculino">
+                                <label class="form-check-label" for="radioMasculino">Masculino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="genero" id="radioOutro"
+                                    value="Outro">
+                                <label class="form-check-label" for="radioOutro">Outro</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userUF" class="form-label">UF</label>
+                            <select name="userUF" id="userUF" class="form-control mt-2">
+                                <option value="">-- Escolha seu UF --</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cad-cidade" class="form-label">Cidade</label>
+                            <select id="cad-cidade" name="cad-cidade" class="form-control" disabled>
+                                <option value="">-- Selecione um estado --</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cad-cep" class="form-label">CEP</label>
+                            <input type="text" id="cad-cep" name="cad-cep" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Cadastro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center p-2 mt-auto">
+        <h6>&copy; João Victor dos Reis - 2025</h6>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/js/index.js"></script>
+</body>
+
+</html>
