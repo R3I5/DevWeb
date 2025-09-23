@@ -1,27 +1,35 @@
 // Adicionando um listener ao botão "entrar"
-// Ao escutar o evento "click" - ele executará a função login();
+document.getElementById("entrar").addEventListener('click', function (e) {
+    e.preventDefault(); // evita recarregar a página caso esteja dentro de um form
+    login();
+});
 
-document.getElementById("entrar").addEventListener(
-    'click', function(){
-                //login();
+// Criar uma função assíncrona de comunicação Front/Back
+async function login() {
+    const fd = new FormData();
+    fd.append('login', document.getElementById('login').value);
+    fd.append('senha', document.getElementById('senha').value); // <-- senha também
+
+    try {
+        const retorno = await fetch('back-end.php', {
+            method: 'POST',
+            body: fd
+        });
+
+        const resposta = await retorno.json();
+        console.log(resposta);
+
+        if (resposta.status === "ok") {
+            // Salvar o login no localStorage para usar em info.html
+            localStorage.setItem("usuarioLogado", resposta.login);
+            // Redireciona para a página de informações
+            window.location.href = "info.html";
+        } else {
+            alert(resposta.mensagem || "Login inválido!");
+        }
+    } catch (error) {
+        console.error("Erro na comunicação:", error);
+        alert("Erro no servidor. Tente novamente mais tarde.");
     }
-);
-
-// Criar uma função assincrona de comunicação Front/Back
-// Para isso eu começo criando a minha função utilizando o ASYNC.
-async function login() { // criando a função
-    const fd = new FormData(); // criando objeto "fd" da classe FormData
-    // o comando append adiciona ao objeto fd um novo atributo
-    // a sintaxe é objeto.append('atributo', valor)
-    fd.append('login',document.getElementById('login').value);
-
-    const retorno = await fetch('back-end.php', // informando a url
-        { // abre a inicialização do FETCH -- cabeçalho
-            method: 'POST', // o envio de informação sera por POST
-            body: fd // será o objeto 'fd' da classe FormData
-        } // fecha iniciizalização do FETCH -- cabeçalho
-    );
-    const resposta = await retorno.json();
-    console.log(resposta);
 }
-
+    
